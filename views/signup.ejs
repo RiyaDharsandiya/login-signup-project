@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav>
+    <h1><a href="/">Starbucs</a></h1>
+  </nav>
+    <form action="">
+      <h2>Sign Up</h2>
+      <label for="email">Email</label>
+      <input type="email" name="email" required />
+      <div class="email error"></div>
+
+      <label for="password">Password</label>
+      <input type="password" name="password" required />
+      <div class="password error"></div>
+      <button>Sign Up</button>
+    </form>
+
+    <script>
+      const emailError=document.querySelector('.email.error')
+      const passError=document.querySelector('.password.error')
+      const form=document.querySelector('form');
+      form.addEventListener('submit',async(e)=>{
+        e.preventDefault();    //prevents page refresh 
+     
+      emailError.textContent=''
+      passError.textContent=''
+      const email=form.email.value
+      const password=form.password.value
+  
+      try {
+        const res=await fetch('/signup',{
+      method:'POST',
+      body:JSON.stringify({email,password}),
+      headers:{'Content-Type':'application/json'}
+        })
+        const data=await res.json()
+        console.log(data.email);
+        if(data.email)
+        {
+          emailError.textContent=data.email
+        }
+        if(data.user)
+        {
+          emailError.textContent=data.user
+        }
+        if(!password || password.length>=8 ||!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/.test(password))
+        {
+          passError.textContent="Invalid Password(1 alphabet and one number required)"
+        }
+        if(data.data)
+        {
+          location.assign('/')
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      })
+    </script>
+    <p>Already have a account?<a href="/login">Login</a></p>
+    <footer>Copyright 2024 Starbucs</footer>
+
+</body>
+</html>

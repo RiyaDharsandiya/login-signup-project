@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forget Password</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav>
+    <h1><a href="/">Starbucs</a></h1>
+  </nav>
+    <form action="">
+      <h2>Resend Your Password</h2>
+      <label for="email">Email</label>
+      <input type="email" name="email" required />
+      <div class="email error"></div>
+      <button>Send</button>
+      <div class="mail error"></div>
+    </form>
+
+    <script>
+        const form=document.querySelector('form');
+        //reset errors
+        const emailError=document.querySelector('.email.error')
+        const mailError=document.querySelector('.mail.error')
+      
+        form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        emailError.textContent=''
+        mailError.textContent=''
+        const email=form.email.value
+        try {
+            const res=await fetch('/forget_pass',{
+      method:'POST',
+      body:JSON.stringify({email}),
+      headers:{'Content-Type':'application/json'}
+    })
+    const data=await res.json()
+        console.log(data);
+        if(data.login)
+        {
+          emailError.textContent=data.login
+        }
+        if(data.message)
+        {
+          mailError.textContent=data.message
+        }
+}
+        catch (error) {
+            console.log(error.message);
+        }
+    })
+    </script>
+
+    <footr>Copyright 2024 Starbucs</footer>
+</body>
+</html> 
