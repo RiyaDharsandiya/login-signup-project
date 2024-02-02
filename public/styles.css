@@ -140,3 +140,92 @@ footer{
   margin-top: 120px;
   color: #aaa;
 }
+
+
+@media screen and (max-width: 768px) {
+  body {
+    margin: 20px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-left:100px;
+  }
+
+  nav h1 {
+    margin-bottom: 10px;
+  }
+
+  nav ul {
+    margin-top: 10px;
+  }
+
+  nav li {
+    margin: 0;
+  }
+
+  nav li a {
+    padding: 10px;
+    margin: 5px;
+    display: block;
+  }
+
+  nav li {
+    list-style: none;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul li {
+    margin-bottom: 10px;
+
+  }
+
+  header img {
+    width: 150px;
+    margin-right: 20px;
+  }
+
+  header h2 {
+    font-size: 2em;
+  }
+
+  header h3 {
+    font-size: 1.2em;
+  }
+
+  header .btn {
+    margin-top: 10px;
+    padding: 10px 14px;
+  }
+
+  .recipes {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 20px;
+    row-gap: 40px;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+
+  .recipe {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .recipe img {
+    width: 100%;
+    max-width: 200px; /* Adjust the maximum width of the image */
+    height: auto;
+    margin: 0 auto 20px;
+  }
+  footer {
+    margin-top: 20px;
+  }
+}
